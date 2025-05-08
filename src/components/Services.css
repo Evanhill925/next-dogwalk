@@ -1,0 +1,121 @@
+/* Services.css */
+:root {
+  --pastel-pink: #ffd1dc;
+  --pastel-blue: #afdceb;
+  --light-pink: #ffecf2;
+  --light-blue: #d6f0fa;
+  --dark-text: #333333;
+  --light-text: #ffffff;
+}
+
+.services-section {
+  padding: 5rem 0;
+  background-color: var(--light-text);
+  position: relative;
+  margin-bottom: 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--pastel-blue), var(--pastel-pink));
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+}
+
+.section-title p {
+  font-size: 1.1rem;
+  color: var(--dark-text);
+  opacity: 0.7;
+  max-width: 700px;
+  margin: 1rem auto 0;
+}
+
+.service-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.service-blue {
+  background: linear-gradient(
+    135deg,
+    var(--light-blue) 0%,
+    var(--light-blue) 100%
+  );
+}
+
+.service-pink {
+  background: linear-gradient(
+    135deg,
+    var(--light-pink) 0%,
+    var(--light-pink) 100%
+  );
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 1rem;
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--dark-text);
+}
+
+.service-blue .service-icon {
+  color: var(--pastel-blue);
+}
+
+.service-pink .service-icon {
+  color: var(--pastel-pink);
+}
+
+.service-card .card-title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--dark-text);
+}
+
+.service-card .card-text {
+  color: var(--dark-text);
+  opacity: 0.8;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .services-section {
+    padding: 4rem 0;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+}

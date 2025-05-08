@@ -1,0 +1,199 @@
+/* Footer.css */
+:root {
+  --pastel-pink: #ffd1dc;
+  --pastel-blue: #afdceb;
+  --light-pink: #ffecf2;
+  --light-blue: #d6f0fa;
+  --dark-text: #333333;
+  --light-text: #ffffff;
+  --footer-bg: #f9fafc;
+  --footer-text: #555555;
+}
+
+.footer {
+  font-size: 14px;
+  background-color: var(--light-blue);
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.footer-top {
+  padding: 5rem 0 3rem;
+}
+
+.footer h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.footer h3:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, var(--pastel-blue), var(--pastel-pink));
+  bottom: -8px;
+  left: 0;
+  border-radius: 5px;
+}
+
+.footer p {
+  margin-bottom: 1rem;
+  color: var(--footer-text);
+  font-size: 0.95rem;
+}
+
+.footer-contact .contact-info p {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.footer-contact .contact-info .icon {
+  margin-right: 0.8rem;
+  color: var(--pastel-pink);
+  margin-top: 4px;
+}
+
+.footer-contact .contact-info a {
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-contact .contact-info a:hover {
+  color: var(--pastel-pink);
+}
+
+.social-links {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: var(--light-pink);
+  color: var(--dark-text);
+}
+
+.social-links a:hover {
+  background-color: var(--pastel-pink);
+  transform: translateY(-3px);
+}
+
+.footer h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 1.5rem;
+  color: var(--dark-text);
+}
+
+.footer h4:after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(to right, var(--pastel-blue), var(--pastel-pink));
+  bottom: -8px;
+  left: 0;
+  border-radius: 5px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+.footer-links ul li a {
+  color: var(--footer-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 0.8rem;
+}
+
+.footer-links ul li a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pastel-pink);
+}
+
+.footer-links ul li a:hover {
+  color: var(--pastel-pink);
+  padding-left: 1.2rem;
+}
+
+.areas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.areas-list li {
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.paw-icon {
+  margin-right: 0.5rem;
+  color: var(--pastel-pink);
+  font-size: 0.8rem;
+}
+
+.footer-bottom {
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  background-color: var(--light-pink);
+}
+
+.footer-bottom .copyright {
+  color: var(--dark-text);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 991px) {
+  .footer-top {
+    padding: 4rem 0 2rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer h3 {
+    font-size: 1.5rem;
+  }
+
+  .footer h4 {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,58 @@
+import React from "react"
+import { Container, Row, Col, Button } from "react-bootstrap"
+import "./Hero.css"
+import dogImage from "../assets/dog-walking1.jpg"
+
+const Hero = () => {
+  return (
+    <div className="hero-section">
+      <Container className="px-md-4 px-lg-5">
+        <Row className="align-items-center justify-content-between">
+          <Col lg={6} className="hero-text px-4 px-md-5">
+            <h1 className="hero-title">Professional & Loving Pet Care</h1>
+            <p className="hero-subtitle">
+              Providing your furry family members with the care and attention
+              they deserve
+            </p>
+            <div className="hero-buttons">
+              <Button
+                href="#services"
+                className="primary-btn"
+                style={{ width: "180px" }}
+              >
+                My Services
+              </Button>
+              <Button
+                href="#contact"
+                className="secondary-btn"
+                style={{ width: "180px" }}
+              >
+                Book Now
+              </Button>
+            </div>
+          </Col>
+          <Col lg={5} className="hero-image-container">
+            <div className="hero-image-wrapper">
+              <img
+                src={dogImage}
+                alt="Happy dog on a walk"
+                className="hero-image"
+              />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <div className="hero-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#FFECF2"
+            fillOpacity="1"
+            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,117.3C672,107,768,117,864,138.7C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+export default Hero
