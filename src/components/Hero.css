@@ -9,7 +9,7 @@
 }
 
 .hero-section {
-  padding: 9rem 0 8rem 0; /* Increased bottom padding to accommodate wave */
+  padding: 9rem 0 16rem 0; /* Adjusted bottom padding */
   background: linear-gradient(
     135deg,
     var(--light-blue) 0%,
@@ -17,7 +17,7 @@
   );
   position: relative;
   overflow: visible; /* Changed to visible to show wave */
-  margin-bottom: 0; /* Remove space between sections */
+  margin-bottom: -4rem; /* Adjusted negative margin */
 }
 
 .hero-text {
@@ -59,36 +59,57 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2; /* Ensure image is above the wave */
+  height: 100%;
 }
 
 .hero-image-wrapper {
   position: relative;
-  width: 90%;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden; /* Changed to hidden to crop image to container */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transform: perspective(1000px) rotateY(-5deg);
   transition: all 0.5s ease;
+  z-index: 2; /* Ensure image is above the wave */
 }
 
 .hero-image-wrapper:hover {
-  transform: perspective(1000px) rotateY(0deg);
+  transform: translateY(-5px);
 }
 
 .hero-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 20px;
   transition: all 0.5s ease;
+  object-fit: cover; /* Changed to cover to fill container */
+  position: relative;
+  z-index: 2; /* Ensure image is above the wave */
+  display: block;
 }
 
 .hero-wave {
   position: absolute;
-  bottom: -2px; /* Ensure perfect alignment */
+  bottom: -5px; /* Adjusted to ensure it doesn't overlap with buttons */
   left: 0;
   width: 100%;
   line-height: 0;
   pointer-events: none; /* Allow clicking through the wave */
+  z-index: 1; /* Ensure wave is below content */
+  transform: translateY(5px); /* Move wave down slightly */
+  max-height: 150px; /* Limit the height of the wave */
+  overflow: hidden; /* Ensure the wave doesn't extend too far */
+}
+
+/* Ensure the wave SVG is properly sized */
+.hero-wave svg {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
 }
 
 .primary-btn {

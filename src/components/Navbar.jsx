@@ -43,6 +43,7 @@
 // }
 
 // export default Navigation
+"use client"
 import React, { useState } from "react"
 import { Navbar, Nav, Container } from "react-bootstrap"
 import "./Navbar.css"
@@ -77,18 +78,19 @@ const Navigation = () => {
       expand="lg"
       className="navbar-custom"
       fixed="top"
+      collapseOnSelect
     >
-      <Container>
+      <Container fluid="md">
         <Navbar.Brand
           href="#"
           className="brand"
           onClick={() => scrollToSection("top")}
         >
-          <span className="brand-name fs-1">Gingerella & Co</span>
+          <span className="brand-name">Gingerella & Co</span>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => setExpanded(expanded ? false : true)}
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

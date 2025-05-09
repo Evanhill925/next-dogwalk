@@ -1,16 +1,16 @@
+"use client"
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { FaPaw, FaClock, FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa"
 import "./GeneralInfo.css"
-import dogImage1 from "../assets/pet-sitter-1.png"
-import dogImage2 from "../assets/pet-sitter-2.png"
+import Image from 'next/image';
 
 const GeneralInfo = () => {
   return (
     <section id="info-section">
-      <Container className="px-md-4 px-lg-5">
-        <Row>
-          <Col lg={4} className="mb-5 mb-lg-0">
+      <Container fluid="md" className="px-md-4 px-lg-5">
+        <Row className="gx-5">
+          <Col xs={12} md={12} lg={5} className="mb-5 mb-lg-0 order-2 order-lg-1">
             <div className="info-content">
               <h2 className="info-title">
                 Professional Pet Care You Can Trust
@@ -67,14 +67,28 @@ const GeneralInfo = () => {
               </div>
             </div>
           </Col>
-          <Col lg={6}>
+          <Col xs={12} md={12} lg={7} className="order-1 order-lg-2 mb-5 mb-lg-0">
             <div className="info-image-container">
               <div className="info-image-stack">
                 <div className="info-image top">
-                  <img src={dogImage1} alt="Pet sitter with dog" />
+                <Image
+                  src="/images/pet-sitter-1.png"
+                  alt="Pet sitter with dog"
+                  width={500}
+                  height={300}
+                  className="img-fluid"
+                  priority
+                />
                 </div>
                 <div className="info-image bottom">
-                  <img src={dogImage2} alt="Pet sitter with cat" />
+                <Image
+                  src="/images/pet-sitter-2.png"
+                  alt="Pet sitter with cat"
+                  width={500}
+                  height={300}
+                  className="img-fluid"
+                  priority
+                />
                 </div>
               </div>
             </div>

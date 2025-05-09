@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import { Container, Row, Col, Card } from "react-bootstrap"
 import {
@@ -55,18 +56,18 @@ const Services = () => {
 
   return (
     <section id="services" className="services-section">
-      <Container className="px-md-4 px-lg-5">
-        <div className="section-title">
+      <Container fluid="md" className="px-md-4 px-lg-5">
+        <div className="section-title text-center mb-5">
           <h2>My Services</h2>
-          <p>
+          <p className="mx-auto" style={{ maxWidth: "700px", position: "relative", zIndex: 11 }}>
             Comprehensive pet care services to meet your furry friend's needs
           </p>
         </div>
 
-        <Row>
+        <Row className="g-4">
           {services.map((service, index) => (
-            <Col lg={4} md={6} key={index} className="mb-4">
-              <Card className={`service-card service-${service.color}`}>
+            <Col xs={12} sm={6} lg={4} key={index} className="mb-4">
+              <Card className={`service-card service-${service.color} h-100`}>
                 <div className="service-icon-wrapper">{service.icon}</div>
                 <Card.Body>
                   <Card.Title>{service.title}</Card.Title>

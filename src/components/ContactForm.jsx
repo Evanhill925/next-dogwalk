@@ -391,6 +391,7 @@ const ContactForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [dateError, setDateError] = useState("")
+  const [apiError, setApiError] = useState("")
 
   // Get today's date in YYYY-MM-DD format for date input min attribute
   const today = new Date().toISOString().split("T")[0]
@@ -442,8 +443,11 @@ const ContactForm = () => {
     setIsSubmitting(true)
 
     try {
+      // Clear any previous errors
+      setApiError("")
+      
       // Call our secure backend API instead of EmailJS directly
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -457,7 +461,9 @@ const ContactForm = () => {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send email")
+        const errorMessage = data.details || data.error || "Failed to send email";
+        console.error("API Error Details:", data);
+        throw new Error(errorMessage)
       }
 
       console.log("Email sent successfully:", data)
@@ -482,7 +488,7 @@ const ContactForm = () => {
       }, 5000)
     } catch (error) {
       console.error("Failed to send email:", error)
-      // Handle error (add error state and display error message)
+      setApiError(error.message || "Failed to send email. Please try again later.")
     } finally {
       setIsSubmitting(false)
       setValidated(true)
@@ -491,18 +497,18 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="contact-section">
-      <Container className="px-md-4 px-lg-5">
-        <div className="section-title">
+      <Container fluid="md" className="px-md-4 px-lg-5">
+        <div className="section-title text-center mb-5">
           <h2>Book a Service</h2>
-          <p>
+          <p className="mx-auto" style={{ maxWidth: "700px" }}>
             Need a pet sitter or dog walker? Fill out the form below and I'll
             get back to you shortly!
           </p>
         </div>
 
         <Row className="justify-content-center">
-          <Col lg={10}>
-            <div className="contact-form-wrapper">
+          <Col xs={12} sm={12} lg={10}>
+            <div className="contact-form-wrapper p-4 rounded">
               <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
                   <Col md={6}>
@@ -668,6 +674,18 @@ const ContactForm = () => {
                   </Row>
                 )}
 
+                {apiError && (
+                  <Row>
+                    <Col>
+                      <Alert variant="danger" className="mb-4">
+                        <div className="d-flex align-items-center">
+                          <span>Error: {apiError}</span>
+                        </div>
+                      </Alert>
+                    </Col>
+                  </Row>
+                )}
+
                 <Form.Group className="mb-4" controlId="message">
                   <Form.Label>Additional Details</Form.Label>
                   <Form.Control
@@ -683,7 +701,7 @@ const ContactForm = () => {
                   <Button
                     type="submit"
                     className="submit-btn"
-                    disabled={isSubmitting || !!dateError}
+                    disabled={isSubmitting || !!dateError || !!apiError}
                   >
                     {isSubmitting ? "Sending..." : "Submit Request"}
                   </Button>

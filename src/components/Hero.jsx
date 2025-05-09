@@ -1,14 +1,15 @@
+"use client"
 import React from "react"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import "./Hero.css"
-import dogImage from "../assets/dog-walking1.jpg"
+import Image from 'next/image';
 
 const Hero = () => {
   return (
     <div className="hero-section">
-      <Container className="px-md-4 px-lg-5">
+      <Container fluid="md" className="px-md-4 px-lg-5">
         <Row className="align-items-center justify-content-between">
-          <Col lg={6} className="hero-text px-4 px-md-5">
+          <Col xs={12} md={12} lg={6} className="hero-text px-4 px-md-5 mb-5 mb-lg-0">
             <h1 className="hero-title">Professional & Loving Pet Care</h1>
             <p className="hero-subtitle">
               Providing your furry family members with the care and attention
@@ -17,33 +18,43 @@ const Hero = () => {
             <div className="hero-buttons">
               <Button
                 href="#services"
-                className="primary-btn"
-                style={{ width: "180px" }}
+                className="primary-btn me-3 mb-3 mb-md-0"
+                style={{ width: "180px", position: "relative", zIndex: 3 }}
               >
                 My Services
               </Button>
               <Button
                 href="#contact"
                 className="secondary-btn"
-                style={{ width: "180px" }}
+                style={{ width: "180px", position: "relative", zIndex: 3 }}
               >
                 Book Now
               </Button>
             </div>
           </Col>
-          <Col lg={5} className="hero-image-container">
+          <Col xs={12} md={12} lg={5} className="hero-image-container">
             <div className="hero-image-wrapper">
-              <img
-                src={dogImage}
-                alt="Happy dog on a walk"
-                className="hero-image"
+              <Image
+                src="/images/dog-walking1.jpg"
+                alt="Dog"
+                width={600}
+                height={800}
+                className="hero-image img-fluid"
+                priority
+                style={{
+                  objectFit: 'cover',
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: '600px'
+                }}
+                fill={false}
               />
             </div>
           </Col>
         </Row>
       </Container>
       <div className="hero-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
           <path
             fill="#FFECF2"
             fillOpacity="1"

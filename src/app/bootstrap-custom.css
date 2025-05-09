@@ -1,0 +1,102 @@
+/* Custom Bootstrap overrides and responsive fixes for Next.js */
+
+/* General responsive container fixes */
+.container-fluid {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Responsive image handling */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 767.98px) {
+  .row {
+    --bs-gutter-x: 1.5rem;
+  }
+  
+  .container, .container-fluid {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .mb-md-0 {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Small devices (landscape phones) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .container, .container-sm {
+    max-width: 540px;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container, .container-sm, .container-md {
+    max-width: 720px;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container, .container-sm, .container-md, .container-lg {
+    max-width: 960px;
+  }
+}
+
+/* Extra large devices */
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1140px;
+  }
+}
+
+/* Fix for navbar on mobile */
+.navbar-collapse {
+  flex-basis: 100%;
+}
+
+/* Ensure buttons stack properly on mobile */
+@media (max-width: 767.98px) {
+  .d-flex {
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Fix for form controls on mobile */
+@media (max-width: 767.98px) {
+  .form-control {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Ensure proper spacing between stacked columns */
+@media (max-width: 991.98px) {
+  .col-lg-4, .col-lg-6 {
+    margin-bottom: 2rem;
+  }
+  
+  .col-lg-4:last-child, .col-lg-6:last-child {
+    margin-bottom: 0;
+  }
+}

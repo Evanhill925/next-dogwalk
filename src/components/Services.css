@@ -9,15 +9,20 @@
 }
 
 .services-section {
-  padding: 5rem 0;
+  padding: 8rem 0 5rem 0; /* Increased top padding to prevent overlap */
   background-color: var(--light-text);
   position: relative;
   margin-bottom: 0;
+  margin-top: -2rem; /* Adjust to prevent gap */
+  position: relative;
+  z-index: 10; /* Ensure services section is above the wave */
 }
 
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 11; /* Ensure title is above everything */
 }
 
 .section-title h2 {
@@ -26,6 +31,18 @@
   position: relative;
   display: inline-block;
   padding-bottom: 1rem;
+  background-color: var(--light-text); /* Add background to ensure visibility */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.section-title p {
+  position: relative;
+  z-index: 11;
+  background-color: var(--light-text); /* Add background to ensure visibility */
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border-radius: 8px;
 }
 
 .section-title h2:after {

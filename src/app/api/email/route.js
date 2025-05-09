@@ -1,4 +1,4 @@
-// src/app/api/send-email/route.js
+// src/app/api/email/route.js
 import { NextResponse } from "next/server"
 import emailjs from "@emailjs/nodejs"
 
@@ -61,8 +61,15 @@ export async function POST(request) {
     )
   } catch (error) {
     console.error("Failed to send email:", error)
+    // Return more detailed error information
     return NextResponse.json(
-      { success: false, error: "Failed to send email" },
+      {
+        success: false,
+        error: "Failed to send email",
+        details: error.message,
+        status: error.status,
+        text: error.text
+      },
       { status: 500 }
     )
   }
