@@ -18,15 +18,15 @@ const Hero = () => {
             <div className="hero-buttons">
               <Button
                 href="#services"
-                className="primary-btn me-3 mb-3 mb-md-0"
-                style={{ width: "180px", position: "relative", zIndex: 3 }}
+                className="primary-btn mb-3 mb-md-0"
+                style={{ position: "relative", zIndex: 3 }}
               >
                 My Services
               </Button>
               <Button
                 href="#contact"
                 className="secondary-btn"
-                style={{ width: "180px", position: "relative", zIndex: 3 }}
+                style={{ position: "relative", zIndex: 3 }}
               >
                 Book Now
               </Button>
