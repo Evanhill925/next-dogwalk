@@ -8,11 +8,12 @@
   --light-text: #ffffff;
 }
 
-.info-section {
+#info-section {
   padding: 6rem 0;
   background-color: var(--light-text);
   position: relative;
-  margin-bottom: 0;
+  margin-bottom: 3rem; /* Add space between this section and the next */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .info-title {
@@ -93,8 +94,8 @@
 .info-image-container {
   position: relative;
   padding: 2rem 0;
-  overflow: visible; /* Allow content to extend beyond container */
-  z-index: 2; /* Ensure it's above wave dividers */
+  overflow: hidden; /* Contain the images within the container */
+  z-index: 1; /* Lower z-index to prevent overlap with other sections */
 }
 
 .info-image-stack {
@@ -102,8 +103,7 @@
   height: 500px;
   max-width: 90%; /* Create more space for rotation */
   margin: 0 auto; /* Center the stack */
-  position: relative;
-  z-index: 5; /* Higher z-index to display above waves */
+  z-index: 2; /* Lower z-index */
 }
 
 .info-image {
@@ -115,7 +115,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   max-width: 100%; /* Prevent image overflow */
-  z-index: 10; /* Highest z-index to ensure it displays above everything */
+  z-index: 3; /* Lower z-index */
 }
 
 .info-image img {
@@ -142,23 +142,52 @@
 
 .info-image:hover {
   transform: scale(1.03) rotate(0);
-  z-index: 15; /* Even higher z-index on hover */
+  z-index: 4; /* Higher z-index on hover but still contained */
 }
 
 @media (max-width: 991px) {
-  .info-section {
+  #info-section {
     padding: 4rem 0;
+    margin-bottom: 4rem; /* More space at medium screens */
   }
 
   .info-image-stack {
     height: 400px;
-    margin: 2rem auto;
+    margin: 2rem auto 4rem; /* Add more bottom margin */
     max-width: 500px;
+  }
+  
+  .info-image {
+    width: 70%; /* Slightly smaller images */
   }
 }
 
 @media (max-width: 767px) {
+  #info-section {
+    margin-bottom: 5rem; /* Even more space at small screens */
+  }
+  
   .info-image-stack {
     height: 350px;
+    margin-bottom: 3rem;
+  }
+  
+  .info-image {
+    width: 65%; /* Even smaller images on mobile */
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 575px) {
+  .info-image-stack {
+    height: 300px;
+  }
+  
+  .info-image.top {
+    top: 10px;
+  }
+  
+  .info-image.bottom {
+    bottom: 10px;
   }
 }

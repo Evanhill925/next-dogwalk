@@ -374,6 +374,8 @@ import React, { useState, useEffect } from "react"
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap"
 import { FaPaw } from "react-icons/fa"
 import emailjs from "@emailjs/browser"
+import { validateClientEmailJSEnv } from "@/utils/envValidator"
+import "./ContactForm.css"
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false)
@@ -398,6 +400,10 @@ const ContactForm = () => {
   
   // Initialize EmailJS
   useEffect(() => {
+    // Debug check for environment variables
+    if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      console.warn("EmailJS public key is missing in the environment variables");
+    }
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
   }, [])
 
@@ -501,7 +507,18 @@ const ContactForm = () => {
       })
       .catch((error) => {
         console.error("Failed to send email:", error)
-        setApiError(error.message || "Failed to send email. Please try again later.")
+        
+        // Enhanced error logging with environment variable check
+        if (error.message && error.message.includes("public key is required")) {
+          console.error("EmailJS public key issue detected. Environment variable check:", {
+            publicKeyExists: !!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+            serviceIdExists: !!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+            templateIdExists: !!process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+          });
+          setApiError("Configuration error: EmailJS public key is missing. Please contact support.");
+        } else {
+          setApiError(error.message || "Failed to send email. Please try again later.");
+        }
       })
       .finally(() => {
         setIsSubmitting(false)
@@ -511,18 +528,18 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="contact-section">
-      <Container fluid="md" className="px-md-4 px-lg-5">
-        <div className="section-title text-center mb-5">
+      <Container className="px-md-4 px-lg-5">
+        <div className="section-title">
           <h2>Book a Service</h2>
-          <p className="mx-auto" style={{ maxWidth: "700px" }}>
+          <p>
             Need a pet sitter or dog walker? Fill out the form below and I'll
             get back to you shortly!
           </p>
         </div>
 
         <Row className="justify-content-center">
-          <Col xs={12} sm={12} lg={10}>
-            <div className="contact-form-wrapper p-4 rounded">
+          <Col lg={10}>
+            <div className="contact-form-wrapper">
               <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
                   <Col md={6}>

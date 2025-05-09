@@ -12,43 +12,36 @@
   padding: 6rem 0 2rem;
   background-color: var(--light-text);
   position: relative;
-  overflow: visible; /* Changed to visible to fix overlap */
+  overflow: hidden; /* Changed to hidden to prevent overlap */
   margin-bottom: 0;
+  margin-top: 2rem; /* Add space from previous section */
 }
 
 .contact-form-wrapper {
-  background-color: var(--light-text);
+  background-color: var(--light-pink);
   border-radius: 20px;
   padding: 3rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
-}
-
-.contact-form-wrapper:before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue));
-  z-index: -1;
-  border-radius: 30px;
-  opacity: 0.2;
+  margin-top: 1rem; /* Add some top margin */
 }
 
 .contact-section .section-title {
   text-align: center;
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-section .section-title h2 {
   font-size: 2.5rem;
   font-weight: 700;
   position: relative;
-  display: inline-block;
-  padding-bottom: 1rem;
+  display: block;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .contact-section .section-title h2:after {
@@ -68,7 +61,9 @@
   color: var(--dark-text);
   opacity: 0.7;
   max-width: 700px;
-  margin: 1rem auto 0;
+  margin: 0.5rem auto 0;
+  display: block;
+  text-align: center;
 }
 
 .form-control,
@@ -103,10 +98,12 @@
   margin-top: 1rem;
 }
 
-.submit-btn:hover {
+.submit-btn:hover, .submit-btn:focus, .submit-btn:active {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   background: linear-gradient(to right, var(--pastel-pink), var(--pastel-blue));
+  color: var(--dark-text);
+  border: none;
 }
 
 .alert-success {
@@ -127,9 +124,17 @@
   pointer-events: none; /* Allow clicking through the wave */
 }
 
+@media (max-width: 991px) {
+  .contact-section {
+    padding: 5rem 0 0;
+    margin-top: 3rem; /* More space at medium screens */
+  }
+}
+
 @media (max-width: 767px) {
   .contact-section {
     padding: 4rem 0 0;
+    margin-top: 4rem; /* Even more space at small screens */
   }
 
   .contact-form-wrapper {
@@ -142,5 +147,12 @@
 
   .submit-btn {
     width: 100%;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 575px) {
+  .contact-section {
+    margin-top: 5rem; /* Maximum space at extra small screens */
   }
 }
