@@ -373,7 +373,7 @@
 import React, { useState, useEffect } from "react"
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap"
 import { FaPaw } from "react-icons/fa"
-// No need to import EmailJS here as we'll use our backend API
+import emailjs from "@emailjs/browser"
 
 const ContactForm = () => {
   const [validated, setValidated] = useState(false)
@@ -395,6 +395,11 @@ const ContactForm = () => {
 
   // Get today's date in YYYY-MM-DD format for date input min attribute
   const today = new Date().toISOString().split("T")[0]
+  
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+  }, [])
 
   // Clear date error when dates change
   useEffect(() => {
@@ -423,7 +428,7 @@ const ContactForm = () => {
     }
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.currentTarget
 
@@ -441,35 +446,42 @@ const ContactForm = () => {
     }
 
     setIsSubmitting(true)
+    setApiError("")
 
-    try {
-      // Clear any previous errors
-      setApiError("")
-      
-      // Call our secure backend API instead of EmailJS directly
-      const response = await fetch("/api/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          sendConfirmation: true, // Tell backend to also send confirmation email
-        }),
+    // Send main email
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          phone: formData.phone,
+          pet_name: formData.petName,
+          pet_type: formData.petType,
+          service_type: formData.serviceType,
+          start_date: formData.startDate,
+          end_date: formData.endDate,
+          message: formData.message,
+        }
+      )
+      .then((response) => {
+        console.log("Email sent successfully:", response)
+        setShowSuccess(true)
+        
+        // Send confirmation email
+        return emailjs.send(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_CONFIRM_TEMPLATE_ID,
+          {
+            name: formData.name,
+            email: formData.email,
+            petName: formData.petName,
+          }
+        )
       })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        const errorMessage = data.details || data.error || "Failed to send email";
-        console.error("API Error Details:", data);
-        throw new Error(errorMessage)
-      }
-
-      console.log("Email sent successfully:", data)
-      setShowSuccess(true)
-
-      // Reset form after submission
+      .then(() => {
+        // Reset form after submission
       setFormData({
         name: "",
         email: "",
@@ -486,13 +498,15 @@ const ContactForm = () => {
       setTimeout(() => {
         setShowSuccess(false)
       }, 5000)
-    } catch (error) {
-      console.error("Failed to send email:", error)
-      setApiError(error.message || "Failed to send email. Please try again later.")
-    } finally {
-      setIsSubmitting(false)
-      setValidated(true)
-    }
+      })
+      .catch((error) => {
+        console.error("Failed to send email:", error)
+        setApiError(error.message || "Failed to send email. Please try again later.")
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+        setValidated(true)
+      })
   }
 
   return (
